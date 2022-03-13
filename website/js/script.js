@@ -98,7 +98,25 @@ function setSymptomData(id) {
 }
 
 function analyzeResults() {
-    
+    $.getJSON("./js/SymptomsOutput.json", function (data) {
+        $.each(data, function (key, val) {
+            if (val.name == id) {
+                var x = $('.nextStep').attr('value', 'Add Symptoms');
+                if (val.min >= 0) {
+                    $(x).click(function () {
+                        var userChoice = document.getElementById("numSlider").innerHTML;
+                        localStorage.setItem('sympChoiceSlider', userChoice);
+                    });
+
+                } else {
+                    $(x).click(function () {
+                        var userChoiceDrop = document.getElementById("symptomResponse").value;
+                        localStorage.setItem('sympChoiceDrop', userChoiceDrop);
+                    });
+                }
+            }
+        });
+    });
 }
 
 function setUserResponse(id) {
@@ -209,30 +227,35 @@ function getSymptomData(id) {
     });
 }
 
-
-
-$(document).ready(function () {
+function setSympSection() {
     var length = $("section").length - 1;
+    // console.log("Length " + length);
     var child = 1;
-
-    $("section").not("section:nth-of-type(1)").hide();
-    $("section").not("section:nth-of-type(1)").css('transform', 'translateX(100px)');
-
+    var currentSection;
+    $("section").not("section:nth-of-type(" + child + ")").hide();
+    $("section").not("section:nth-of-type(" + child + ")").css('transform', 'translateX(100px)');
+    
     $(".nextStep").click(function () {
         var id = $(this).attr("id");
-
         if (id == "next") {
             if (child <= length) {
                 child++;
-                console.log(child);
+                // console.log(child);
                 if (child == 3) {
                     $(this).prop("value", "Add Symptom");
                     // $(this).click(offCanvasMenu.close())
                     // child = 1;
+                    var x = $('.nextStep').attr('value', 'Add Symptoms');
+                    $(x).click(function () {
+                        offCanvasMenu.close();
+                        child = 1;
+                        currentSection = $("section:nth-of-type(1)");
+                        $('section').not(currentSection).hide();
+                    });
                 }
             }
         }
-        var currentSection = $("section:nth-of-type(" + child + ")");
+        currentSection = $("section:nth-of-type(" + child + ")");
         currentSection.fadeIn();
         currentSection.css('transform', 'translateX(0)');
         currentSection.prevAll('section').css('transform', 'translateX(-100px)');
@@ -240,7 +263,11 @@ $(document).ready(function () {
 
         $('section').not(currentSection).hide();
     });
+}
 
+
+
+$(document).ready(function () {
     $(document).keyup(function () {
         if ($('#txt-search').val().length === 0) {
             $("#filter-records").hide();
