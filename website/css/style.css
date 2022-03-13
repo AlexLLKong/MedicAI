@@ -747,6 +747,11 @@ textarea:focus, textarea:active {
     height: 100%;
 }
 
+#addSymptom  ul #offCanvasContent section {
+    transition: transform 0.2s ease-in-out;
+}
+
+
 #addSymptom  ul #offCanvasContent section form .form-row .form-group label {
     font-size: 1rem;
     font-weight: 400;
@@ -814,12 +819,12 @@ input, input:focus, input:active {
     box-shadow: none!important;
 }
 
-#addSymptom  ul #offCanvasContent section form .submitBtn {
+#addSymptom  ul #offCanvasContent .submitBtn {
     padding-top: 10rem;
     width: 100%;
 }
 
-#addSymptom  ul #offCanvasContent section form .submitBtn .nextStep {
+#addSymptom  ul #offCanvasContent .submitBtn .nextStep {
     width: 100%;
     color: var(--primary-color);
     background-color: transparent;
@@ -832,7 +837,7 @@ input, input:focus, input:active {
     margin-bottom: 2rem;
 }
 
-#addSymptom  ul #offCanvasContent section form .submitBtn .nextStep:hover {
+#addSymptom  ul #offCanvasContent .submitBtn .nextStep:hover {
     color: var(--white);
     background-color: var(--primary-color);
 }

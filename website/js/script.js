@@ -124,6 +124,35 @@ function getSymptomData(id) {
 
 
 $(document).ready(function () {
+    var length = $("section").length - 1;
+    var child = 1;
+    
+    $("section").not("section:nth-of-type(1)").hide();
+    $("section").not("section:nth-of-type(1)").css('transform','translateX(100px)');
+
+    $(".nextStep").click(function () {
+        var id = $(this).attr("id");
+        
+        if (id == "next") {
+            if (child <= length) {
+                child++;
+                console.log(child);
+                if (child == 3) {
+                    $(this).prop("value", "Add Symptom");
+                    // $(this).click(offCanvasMenu.close())
+                    // child = 1;
+                }
+            }
+        }
+        var currentSection = $("section:nth-of-type(" + child + ")");
+        currentSection.fadeIn();
+        currentSection.css('transform','translateX(0)');
+        currentSection.prevAll('section').css('transform','translateX(-100px)');
+        currentSection.nextAll('section').css('transform','translateX(100px)');
+    
+        $('section').not(currentSection).hide();
+    });
+
     $(document).keyup(function () {
         if ($('#txt-search').val().length === 0) {
             $("#filter-records").hide();
