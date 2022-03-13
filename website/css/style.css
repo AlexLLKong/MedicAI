@@ -693,6 +693,13 @@ textarea:focus, textarea:active {
 
 
 /**** OFF CANVAS MENU ****/
+.mm-ocd--open {
+    background-color: rgba(0, 0, 0, 0.8);  
+    backdrop-filter: blur(5px);
+}
+.mm-ocd__content {
+    background: transparent;
+}
 #addSymptom  ul #offCanvasContent {
     padding: 3rem 5rem;
 }
