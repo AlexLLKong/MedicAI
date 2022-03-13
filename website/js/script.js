@@ -279,4 +279,9 @@ $(document).ready(function () {
     }).fail(function () {
         console.log("An error has occurred.");
     });
+
+    $(".me-analyze .me-btn-primary").click(function () {
+        $(".me-results-section").css("display", "block");
+    });
+
 });

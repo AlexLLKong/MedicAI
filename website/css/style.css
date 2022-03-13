@@ -488,6 +488,10 @@ textarea:focus, textarea:active {
 /* *** */
 
 /* Results Section */
+.me-results-section {
+    display: none;
+}
+
 .me-result-head {
     display: flex;
     margin-top: 5rem;
