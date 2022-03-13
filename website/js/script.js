@@ -15,4 +15,20 @@ $(document).ready(function () {
     $('.me-button').on('click', function () {
         $('.me-navbar-icon-animated').toggleClass('open');
     });
+
+    $('.me-terms-check:checkbox').change(function(){
+        if($(this).is(":checked")) {
+            $('.me-terms-btn .me-btn-primary').removeClass("me-disabled");
+            $(".me-terms-btn .me-btn-primary").attr("href", "./home.html")
+        } else {
+            $('.me-terms-btn .me-btn-primary').addClass("me-disabled");
+            $(".me-terms-btn .me-btn-primary").attr("href", "")
+        }
+    });
 });
+
+// When the user clicks on decline button, open the popup
+function openPopup() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
