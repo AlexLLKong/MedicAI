@@ -74,6 +74,91 @@
         </div>
     </div>
 
+
+
+
+    <div style ="padding-top:15vh;padding-left:10rem;padding-right:10rem;">
+        <a href="#addSymptom"><span>Add</span></a>
+    </div>
+
+    <nav id="addSymptom">
+        <ul>
+            <div id="offCanvasContent">
+                <div class="headCanvas row">
+                    <div class="headCol col-6">
+                        <img class="logo-main" src="./assets/logo/logo.svg" height="50px" alt="Logo of medicAI">
+                    </div>
+                    <div class="headCol col-6" id="closeCol">
+                        <div id="closeIcon">
+                            <img src="./assets/close.svg" height="50px" onclick="offCanvasMenu.close();">
+                        </div>
+                    </div>
+                </div>
+
+                <section>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group range-wrap">
+                                <label for="age" style="margin-bottom: 3rem;">What is your age?</label>
+                                <div class="range-value" id="rangeAgeCount"></div>
+                                <input type="range" class="form-range" id="ageRangeValue" name="age" min="19" max="120">
+                            </div>
+
+                            <div class="form-group col-12">
+                                <label for="gender">What is your gender?</label>
+                                <select name="gender" id="gender" required="required">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row submitBtn">
+                            <input type="submit" class="nextStep" value="Next" />
+                        </div>
+                    </form>
+                </section>
+
+                <section>
+                    <form autocomplete="off">
+                        <div class="form-row">
+                            <div class="form-group has-search">
+                                <input type="input" autocomplete="off" class="form-control" id="txt-search" placeholder="Type or select one of the following ..."/>
+                                <div id="filter-records"></div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+                <section style="padding-top: 10rem;">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group range-wrap col-12">
+                                <label for="symptomResponse" class="symptomName" style="margin-bottom: 3rem;"></label>
+                                <div id="symptomResponses"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row submitBtn">
+                            <input type="submit" class="nextStep" value="Add Symptom" />
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </ul>
+    </nav>
+    
+    
+
+
+
+
+
+
+
+
+
     <div class="me-symptom-section" id="diagnosisSection">
         <div class="container">
 
@@ -213,8 +298,7 @@
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+    <script src="./js/mmenu-light.js"></script>
     <script src="./js/script.js"></script>
-    
 </body>
 </html>
