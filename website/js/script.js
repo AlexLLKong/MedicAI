@@ -6,6 +6,27 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 $(document).ready(function () {
+    if(!localStorage.SessionID){
+      console.log("No session id in local storage");
+      fetch("/init")
+        .then(response => response.json())
+        .then(jsonData => {
+
+        localStorage.setItem("SessionID", jsonData.SessionID);
+      })
+    } else {
+      fetch("/acceptTerms", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          SessionID: localStorage.SessionID
+        })
+        })
+        .then(response => response.json())
+        .then(jsonData => console.log(jsonData))
+    }
     $(document).scroll(function () {
         var $nav = $(".navbar-custom");
         $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
@@ -19,7 +40,7 @@ $(document).ready(function () {
     $('.me-terms-check:checkbox').change(function(){
         if($(this).is(":checked")) {
             $('.me-terms-btn .me-btn-primary').removeClass("me-disabled");
-            $(".me-terms-btn .me-btn-primary").attr("href", "./home.html")
+            $(".me-terms-btn .me-btn-primary").attr("href", "/html/home.html")
         } else {
             $('.me-terms-btn .me-btn-primary').addClass("me-disabled");
             $(".me-terms-btn .me-btn-primary").attr("href", "")

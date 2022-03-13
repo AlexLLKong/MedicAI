@@ -5,7 +5,10 @@ const fs = require("fs");
 app.use(express.json());
 
 // FOR SERVING TEST PAGE DELETE ME 
-app.use("/js", express.static("./public"));
+app.use("/js", express.static("./website/js"));
+app.use("/assets", express.static("./website/assets"));
+app.use("/css", express.static("./website/css"));
+app.use("/html", express.static("./website"));
 
 const port = process.env.PORT || 5000;
 const initSessionHref = "https://endlessmedicalapi1.p.rapidapi.com/InitSession";
@@ -20,7 +23,12 @@ const getDocumentationHref = "https://api.endlessmedical.com/v1/dx/GetMedicalDoc
 const getSpecializationsHref = "https://api.endlessmedical.com/v1/dx/GetSuggestedSpecializations";
 
 app.get("/", (req, res) => {
-  const doc = fs.readFileSync("./public/index.html", "utf8");
+  const doc = fs.readFileSync("./website/index.html", "utf8");
+  res.send(doc);
+})
+
+app.get("/home.html", (req, res) => {
+  const doc = fs.readFileSync("./website/home.html", "utf8");
   res.send(doc);
 })
 
@@ -138,6 +146,7 @@ app.post("/acceptTerms", (req, res) => {
     });
 })
 
+// adding symptoms
 app.post("/updateFeature", (req, res) => {
   const url = `${updateFeatureHref}?SessionID=${req.body.SessionID}&name=${req.body.name}&value=${req.body.value}`;
   fetch(url, {
@@ -153,6 +162,7 @@ app.post("/updateFeature", (req, res) => {
     });
 })
 
+// remove symptoms
 app.post("/deleteFeature", (req, res) => {
   const url = `${deleteFeatureHref}?SessionID=${req.body.SessionID}&name=${req.body.name}`;
   fetch(url, {
